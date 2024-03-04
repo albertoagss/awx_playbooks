@@ -1,6 +1,6 @@
 ---
 - name: Playbook de demostración - Hello World
-  hosts: localhost
+  hosts: all
   tasks:
     - name: Mostrar mensaje
       debug:

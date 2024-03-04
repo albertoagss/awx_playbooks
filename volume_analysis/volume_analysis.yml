@@ -1,6 +1,6 @@
 ---
 - name: Análisis del espacio de los volúmenes de las máquinas cliente
-  hosts: centos8clients
+  hosts: all
   gather_facts: yes
 
   tasks:
