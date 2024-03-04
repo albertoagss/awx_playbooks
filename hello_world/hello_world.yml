@@ -1,0 +1,7 @@
+---
+- name: Playbook de demostración - Hello World
+  hosts: localhost
+  tasks:
+    - name: Mostrar mensaje
+      debug:
+        msg: "Hello, world!"
