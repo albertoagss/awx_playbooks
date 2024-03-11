@@ -1,0 +1,8 @@
+---
+- name: Chequeo del espacio de los volúmenes de las máquinas cliente
+  hosts: all
+  become: true
+
+  roles:
+          - role: volume_analysis
+  

@@ -1,0 +1,9 @@
+---
+- name: Obtener espacio en los volúmenes
+  ansible.builtin.shell: df -h
+  register: volume_space
+  changed_when: false
+
+- name: Mostrar el espacio disponible
+  debug:
+          var: volume_space.stdout_lines
