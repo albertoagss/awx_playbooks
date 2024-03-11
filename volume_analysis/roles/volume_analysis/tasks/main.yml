@@ -5,4 +5,4 @@
 
 - name: Mostrar el espacio disponible
   debug:
-          msg: "{{ volume_space.stdout }}"
+          var: volume_space.stdout_lines
