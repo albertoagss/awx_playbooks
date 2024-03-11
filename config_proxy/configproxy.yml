@@ -1,6 +1,6 @@
 ---
 - name: Configurar Proxy
-  hosts: apache
+  hosts: Proxies Inversos
   become: true
 
   roles:
