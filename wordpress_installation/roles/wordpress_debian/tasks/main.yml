@@ -11,6 +11,7 @@
         - php-mbstring
         - php-mysql
   notify: "restart apache"
+
 - name: Descargar archivo de WordPress Debian
   get_url:
           url: "https://wordpress.org/latest.tar.gz"
