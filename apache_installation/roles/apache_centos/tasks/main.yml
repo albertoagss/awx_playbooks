@@ -15,7 +15,7 @@
           state: enabled
   notify: "restart firewalld"
 
-- name: Deshabilitar SeLinux
+- name: Deshabilitar SELINUX
   template:
           src: files/config
           dest: /etc/selinux/config

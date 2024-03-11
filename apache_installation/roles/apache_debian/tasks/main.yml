@@ -19,17 +19,17 @@
   ufw:
           state: enabled
 
-- name: Abrir puerto 80 con ufw en Debian
+- name: Abrir puerto 80
   ufw:
           rule: allow
           port: "80"
 
-- name: Abrir puerto 443 con ufw en Debian
+- name: Abrir puerto 443
   ufw:
           rule: allow
           port: "443"
 
-- name: Abrir puerto 22 con ufw en Debian
+- name: Abrir puerto 22
   ufw:
           rule: allow
           port: "22"
