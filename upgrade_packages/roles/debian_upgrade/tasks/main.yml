@@ -1,10 +1,10 @@
 ---
-- name: Create list
+- name: Crear lista
   set_fact:
     list: "{{ deb_pkgs.split(',') }}"
   when: deb_pkgs | default("null", false)
 
-- name: Debian - Prevent packages from being upgraded
+- name: Debian - Praevent packages from being upgraded
   dpkg_selections:
     name: "{{ item }}"
     selection: hold
@@ -12,13 +12,13 @@
     - "{{ list }}"
   when: deb_pkgs | default("null", false)
 
-- name: Debian - Update cache
+- name: Actualizar cache
   apt:
     update_cache: yes
   retries: 3
   delay: 10
 
-- name: Debian - Upgrade all packages, excluding those indicated
+- name: Actualizar todos los paquetes, excluyendo los indicados
   apt:
     name: "*"
     state: latest
@@ -30,7 +30,7 @@
   with_items: "{{ list }}"
   when: deb_pkgs | default("null", false)
 
-- name: Debian - Allow packages to be upgraded again
+- name: Permitir a los paquetes ser actualizados de nuevo
   dpkg_selections:
     name: "{{ item }}"
     selection: install

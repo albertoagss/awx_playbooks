@@ -4,10 +4,10 @@
   become: true
 
   roles:
-    - role: upgrade_CentOS
+    - role: centos_upgrade
       when: ansible_distribution == 'CentOS'
 
-    - role: upgrade_Debian
+    - role: debian_upgrade
       when: ansible_distribution == 'Debian'
 
     - role: reboot
