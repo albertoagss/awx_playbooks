@@ -1,6 +1,6 @@
 ---
 - name: Instalar Wordpress
-  hosts: wordpress
+  hosts: Wordpress
   become: true
 
   roles:
