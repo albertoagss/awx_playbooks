@@ -1,6 +1,6 @@
 ---
 - name: Obtener espacio en los volúmenes y almacenarlo en una variable
-  shell: df -h  | awk '{printf "%s -> %.3f\n", $6, $4/1024}'
+  shell: df -h
   register: volume_space
 
 - name: Mostrar el espacio disponible
