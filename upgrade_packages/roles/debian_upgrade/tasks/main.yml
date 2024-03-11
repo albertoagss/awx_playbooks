@@ -4,7 +4,7 @@
     list: "{{ deb_pkgs.split(',') }}"
   when: deb_pkgs | default("null", false)
 
-- name: Debian - Praevent packages from being upgraded
+- name: Seleccionar los paquetes que no deben ser actualizados
   dpkg_selections:
     name: "{{ item }}"
     selection: hold
