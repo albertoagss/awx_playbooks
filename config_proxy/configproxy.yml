@@ -1,6 +1,6 @@
 ---
 - name: Configurar Proxy
-  hosts: Proxies Inversos
+  hosts: "Proxies Inversos"
   become: true
 
   roles:
