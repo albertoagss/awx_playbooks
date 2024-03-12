@@ -14,7 +14,7 @@
 
 - name: Descargar archivo de WordPress Debian
   get_url:
-          url: "https://wordpress.org/latest.tar.gz"
+          url: "https://es.wordpress.org/latest.tar.gz"
           dest: "/tmp/wordpress.tar.gz"
 
 - name: Extraer archivo de WordPress Debian
