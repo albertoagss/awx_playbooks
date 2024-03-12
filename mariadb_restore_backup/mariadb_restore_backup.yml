@@ -1,0 +1,12 @@
+---
+
+- name: Recovery Backup Wordpress DataBase
+  hosts: Mariadb
+  become: true
+
+  roles:
+          - role: restore_backup_centos
+            when: ansible_distribution == "CentOS"
+
+          - role: restore_backup_debian
+            when: ansible_distribution == "Debian"
