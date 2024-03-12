@@ -14,7 +14,7 @@
 
 - name: Descargar y descomprimir WordPress para CentOS
   unarchive:
-          src: https://es.wordpress.org/latest.tar.gz
+          src: https://wordpress.org/wordpress-6.4.3.tar.gz
           dest: /var/www/html/
           remote_src: yes
           owner: apache
