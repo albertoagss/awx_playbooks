@@ -13,7 +13,7 @@
 - name: Realizar backup de la base de datos Debian
   mysql_db:
           state: dump
-          name: bdwordpress
+          name: "{{ debian_bd_name }}"
           target: "/backup/bdwordpress-Debian_backup_{{ timestamp }}.sql"
 
 - name: Comprobar si se ha realizado correctamente el backup Debian

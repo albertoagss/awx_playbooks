@@ -12,10 +12,10 @@
 
 - name: Realizar backup de la base de datos CentOS
   mysql_db:
-          login_user: root
-          login_password: vagrant
+          login_user: "{{ login_user }}"
+          login_password: "{{ login_password }}"
           state: dump
-          name: bdwordpress
+          name: "{{ centos_bd_name }}"
           target: "/backup/bdwordpress-CentOS_backup_{{ timestamp }}.sql"
 
 - name: Comprobar si se ha realizado correctamente el backup CentOS
