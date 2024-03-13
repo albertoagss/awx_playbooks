@@ -7,7 +7,8 @@
 
 - name: Instalar repo
   yum_repository:
-          name: "MongoDB Repository"
+          name: "mongodb-org-{{ mongodb_version }}"
+          description: "MongoDB Repository"
           baseurl: "https://repo.mongodb.org/yum/redhat/{{ server_version }}/mongodb-org/{{ mongodb_version }}/x86_64/"
           enabled: true
 
