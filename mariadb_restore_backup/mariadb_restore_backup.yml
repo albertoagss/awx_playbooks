@@ -1,7 +1,7 @@
 ---
 
 - name: Recovery Backup Wordpress DataBase
-  hosts: Mariadb
+  hosts: DBservers
   become: true
 
   roles:

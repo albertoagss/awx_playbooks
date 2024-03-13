@@ -1,7 +1,7 @@
 ---
 
 - name: Backup DataBase Wordpress
-  hosts: Mariadb
+  hosts: DBservers
   become: true
 
   roles:

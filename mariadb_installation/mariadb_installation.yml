@@ -1,6 +1,6 @@
 ---
 - name: Instalar MariaDB
-  hosts: Mariadb
+  hosts: DBservers
   become: true
 
   roles:
