@@ -1,0 +1,11 @@
+---
+- name: Instalar MongoDB
+  hosts: DBservers
+  become: true
+
+  roles:
+          - role: mongodb_centos
+            when: ansible_distribution == 'CentOS'
+
+          - role: mongodb_debian
+            when: ansible_distriburion == 'Debian'
