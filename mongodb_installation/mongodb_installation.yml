@@ -7,5 +7,5 @@
           - role: mongodb_centos
             when: ansible_distribution == 'CentOS'
 
-          - role: mongodb_debian
-            when: ansible_distriburion == 'Debian'
+            #          - role: mongodb_debian
+            #            when: ansible_distriburion == 'Debian'
