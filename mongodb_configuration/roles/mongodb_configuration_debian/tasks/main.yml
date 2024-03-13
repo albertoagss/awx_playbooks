@@ -1,0 +1,8 @@
+---
+- name: Importar archivo configuración
+  template:
+          src: files/mongod.conf
+          dest: /etc/mongod.conf
+          owner: root
+          group: root
+          mode: '0644'
