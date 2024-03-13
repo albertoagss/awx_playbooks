@@ -2,6 +2,8 @@
 - name: Añadir key del repo
   rpm_key:
           key: https://www.mongodb.org/static/pgp/server-{{ mongodb_version }}.asc
+  retries: 3
+  delay: 5
 
 - name: Instalar repo
   yum_repository:

@@ -10,6 +10,8 @@
   apt_key:
           url: "https://www.mongodb.org/static/pgp/server-{{ mongodb_version }}.asc"
           state: present
+  retries: 3
+  delay: 5
 
 - name: Crear list file para MongoDB
   apt_repository:
