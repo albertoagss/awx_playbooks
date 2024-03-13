@@ -15,7 +15,7 @@
 
 - name: Crear list file para MongoDB
   apt_repository:
-          repo: deb [ arch=amd64,arm64 ] https://www.mongodb.org/static/pgp/server-7.0.asc
+          repo: "deb http://repo.mongodb.org/apt/{{ debian_version }}/mongodb-org/{{ mongodb_version }} main"
           state: present
 
 - name: Instalar MongoDB
