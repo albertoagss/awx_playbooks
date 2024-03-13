@@ -1,0 +1,8 @@
+---
+- name: Iniciar servicio MongoDB
+  become: yes
+  service:
+          name: mongod
+          state: started
+          enabled: yes
+  listen: "start mongodb"

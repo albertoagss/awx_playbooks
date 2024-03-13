@@ -12,6 +12,6 @@
 - name: Instalar MongoDB
   become: yes
   yum:
-    name: mongodb-org
-    state: present
+          name: mongodb-org
+          state: present
   notify: "start mongodb"

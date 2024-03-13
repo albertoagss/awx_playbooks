@@ -1,1 +1,24 @@
 ---
+- name: Instalación de los paquetes requeridos
+  apt:
+          name:
+                  - gnupg
+                  - curl
+          state: present
+
+- name: Importación de la key del repositorio
+  apt_key:
+          url: "https://www.mongodb.org/static/pgp/server-{{ mongodb_version }}.asc"
+          state: present
+
+- name: Crear list file para MongoDB
+  apt_repository:
+          repo: deb [ arch=amd64,arm64 ] https://www.mongodb.org/static/pgp/server-7.0.asc
+          state: present
+
+- name: Instalar MongoDB
+  become: yes
+  yum:
+          name: mongodb-org
+          state: latest
+  notify: "start mongodb"
