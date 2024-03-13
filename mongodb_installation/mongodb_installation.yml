@@ -1,7 +1,6 @@
 ---
 - name: Instalar MongoDB
-  #hosts: DBservers
-  hosts: 192.168.10.62
+  hosts: DBservers
   become: true
 
   roles:
