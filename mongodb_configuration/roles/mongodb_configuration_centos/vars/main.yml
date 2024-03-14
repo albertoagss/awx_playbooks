@@ -2,8 +2,11 @@
 
 control_node: "localhost"
 
-admin_user: admin
+admin_user: "admin"
 admin_password: 1234
 
-db_name: bd_prueba
-collection_name: collection_prueba
+db_name: "bd_prueba"
+collection_name: "collection_prueba"
+
+remote_user: "user_prueba"
+remote_password: 1234

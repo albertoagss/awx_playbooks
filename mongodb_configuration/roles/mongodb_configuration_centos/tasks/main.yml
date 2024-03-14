@@ -8,8 +8,9 @@
   community.mongodb.mongodb_user:
           database: admin
           name: "{{ admin_user }}"
-          password: "{{ admin_password }}"
+          password: "{{ admin_password }}" 
           state: present
+          roles: ["root"]
 
 - name: Importar archivo configuración
   template:
@@ -42,3 +43,5 @@
           db: "{{ db_name }}"
           name: "{{ remote_user }}"
           password: "{{ remote_password }}"
+          roles: 
+            - readWrite
