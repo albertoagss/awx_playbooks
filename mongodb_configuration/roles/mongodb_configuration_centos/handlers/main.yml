@@ -1,0 +1,13 @@
+---
+
+- name: Reiniciar servicio MongoDB
+  service:
+          name: mongod
+          state: restarted
+  listen: "restart mongodb"
+
+- name: Reiniciar firewall
+  service:
+          name: firewalld
+          state: restarted
+  listen: "restart firewall"

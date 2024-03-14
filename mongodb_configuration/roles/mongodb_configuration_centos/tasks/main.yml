@@ -1,0 +1,44 @@
+---
+
+- name: Instalación de los módulos de MongoDB
+  shell: ansible-galaxy collection install community.mongodb
+  delegate_to: "{{ control_node }}"
+
+- name: Crear usuario administrador
+  community.mongodb.mongodb_user:
+          database: admin
+          name: "{{ admin_user }}"
+          password: "{{ admin_password }}"
+          state: present
+
+- name: Importar archivo configuración
+  template:
+          src: files/mongod.conf
+          dest: /etc/mongod.conf
+          owner: root
+          group: root
+          mode: '0644'
+  notify: "restart mongodb"
+
+- name: Abrir puerto de MongoDB
+  firewalld:
+          port: 27017/tcp
+          permanent: true
+          state: enabled
+  notify: "restart firewall"
+
+- name: Crear base de datos
+  community.mongodb.mongodb_shell:
+          login_user: "{{ admin_user }}"
+          login_password: "{{ admin_password }}"
+          login_port: 27017
+          db: "{{ db_name }}"
+          eval: "db.createCollection('{{ collection_name }}')"
+
+- name: Crear usuario para conexión remota
+  community.mongodb.mongodb_user:
+          login_user: "{{ admin_user }}"
+          login_password: "{{ admin_password }}"
+          db: "{{ db_name }}"
+          name: "{{ remote_user }}"
+          password: "{{ remote_password }}"
