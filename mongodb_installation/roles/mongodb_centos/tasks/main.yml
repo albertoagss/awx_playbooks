@@ -12,9 +12,21 @@
           baseurl: "https://repo.mongodb.org/yum/redhat/{{ server_version }}/mongodb-org/{{ mongodb_version }}/x86_64/"
           enabled: true
 
-- name: Instalar MongoDB
+- name: Instalar MongoDB y pip
   become: yes
   yum:
-          name: mongodb-org
+          name:
+                  - mongodb-org
+                  - pip
           state: present
   notify: "start mongodb"
+  retries: 3
+  delay: 5
+
+- name: Instalar PyMongo
+  become: yes
+  pip:
+          name: pymongo
+          state: present
+  retries: 3
+  delay: 5
