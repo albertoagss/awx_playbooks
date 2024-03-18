@@ -1,0 +1,5 @@
+---
+
+backups_dir: "/backups"
+
+debian_bd_name: "bdwordpress"

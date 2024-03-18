@@ -1,0 +1,7 @@
+---
+
+backups_dir: "/backups"
+
+login_user: "root"
+login_password: "vagrant"
+centos_bd_name: "bdwordpress"
