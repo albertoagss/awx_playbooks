@@ -1,0 +1,10 @@
+--- 
+- name: Crear directorio para los backups
+  file:
+          path: /backup
+          state: directory
+          mode: '0755'
+
+- name: Obtener fecha y hora actual
+  set_fact:
+          timestamp: "{{ ansible_date_time.date }}_{{ ansible_date_time.time }}"
