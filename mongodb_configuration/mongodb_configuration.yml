@@ -8,4 +8,4 @@
             when: ansible_distribution == 'CentOS'
 
           - role: mongodb_configuration_debian
-            when: ansible_distriburion == 'Debian'
+            when: ansible_distribution == 'Debian'
