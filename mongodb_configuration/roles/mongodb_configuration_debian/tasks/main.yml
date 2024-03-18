@@ -6,3 +6,41 @@
           owner: root
           group: root
           mode: '0644'
+  register: restart
+
+- name: Reiniciar MongoDB
+  service:
+          name: mongod
+          state: restarted
+  when: restart.changed
+
+- name: Abrir puerto de MongoDB
+  ufw:
+          rule: allow
+          port: "27017"
+  register: firewall
+
+- name: Reiniciar firewall
+  ufw:
+          state: reloaded
+  when: firewall.changed
+
+- name: Crear base de datos
+  community.mongodb.mongodb_shell:
+          login_user: "{{ admin_user }}"
+          login_password: "{{ admin_password }}"
+          login_port: 27017
+          db: "{{ db_name }}"
+          eval: "db.createCollection('{{ collection_name }}')"
+
+- name: Crear usuario para conexión remota
+  community.mongodb.mongodb_user:
+          login_user: "{{ admin_user }}"
+          login_password: "{{ admin_password }}"
+          db: "{{ db_name }}"
+          name: "{{ remote_user }}"
+          password: "{{ remote_password }}"
+          state: present
+          roles:
+                  - readWrite
+  

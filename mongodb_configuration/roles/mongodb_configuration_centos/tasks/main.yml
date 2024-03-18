@@ -1,17 +1,3 @@
----
-
-- name: Instalación de los módulos de MongoDB
-  shell: ansible-galaxy collection install community.mongodb
-  delegate_to: "{{ control_node }}"
-
-- name: Crear usuario administrador
-  community.mongodb.mongodb_user:
-          database: admin
-          name: "{{ admin_user }}"
-          password: "{{ admin_password }}" 
-          state: present
-          roles: ["root"]
-
 - name: Importar archivo configuración
   template:
           src: files/mongod.conf
@@ -19,14 +5,28 @@
           owner: root
           group: root
           mode: '0644'
-  notify: "restart mongodb"
+  # Usamos register y when para reemplazar a los handlers, ya que estos se ejecutan al final de todas las tareas
+  #     y pueden dar problemas por este motivo.
+  register: restart
+
+- name: Reiniciar MongoDB
+  service:
+          name: mongod
+          state: restarted
+  when: restart.changed
 
 - name: Abrir puerto de MongoDB
   firewalld:
           port: 27017/tcp
           permanent: true
           state: enabled
-  notify: "restart firewall"
+  register: firewall
+
+- name: Reiniciar firewall
+  systemd:
+          name: firewalld
+          state: restarted
+  when: firewall.changed
 
 - name: Crear base de datos
   community.mongodb.mongodb_shell:
@@ -43,5 +43,6 @@
           db: "{{ db_name }}"
           name: "{{ remote_user }}"
           password: "{{ remote_password }}"
-          roles: 
-            - readWrite
+          state: present
+          roles:
+                  - readWrite
