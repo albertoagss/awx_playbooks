@@ -19,7 +19,6 @@
                   - mongodb-org
                   - pip
           state: present
-  notify: "start mongodb"
   retries: 3
   delay: 5
 
@@ -30,6 +29,13 @@
           state: present
   retries: 3
   delay: 5
+
+- name: Iniciar MongoDB
+  become: yes
+  service:
+          name: mongod
+          state: started
+          enabled: yes
 
 - name: Crear usuario administrador
   community.mongodb.mongodb_user:

@@ -23,7 +23,21 @@
   yum:
           name: mongodb-org
           state: latest
-  notify: "start mongodb"
+
+- name: Instalar PyMongo
+  become: yes
+  pip:
+          name: pymongo
+          state: present
+  retries: 3
+  delay: 10
+
+- name: Iniciar MongoDB
+  become: yes
+  service:
+          name: mongod
+          state: started
+          enabled: yes
 
 - name: Crear usuario administrador
   community.mongodb.mongodb_user:
