@@ -4,6 +4,8 @@
           name:
                   - gnupg
                   - curl
+                  - pip
+                  - ufw
           state: present
 
 - name: Importación de la key del repositorio
