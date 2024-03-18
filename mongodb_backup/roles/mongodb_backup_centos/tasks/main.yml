@@ -8,3 +8,7 @@
 - name: Obtener fecha y hora actual
   set_fact:
           timestamp: "{{ ansible_date_time.date }}_{{ ansible_date_time.time }}"
+
+- name: Realizar backup de la base de datos MongoDB
+  ansible.builtin.shell:
+          cmd: mongodump --host {{ 192.168.10.62 }}  --username {{ admin_user }} --password {{ admin_password }} --out {{ backups_dir }}
