@@ -26,8 +26,8 @@
 
 - name: Restaurar base de datos
   mysql_db:
-      login_user: wordpress-user
-      login_password: 1234
-      name: bdwordpress
+      login_user: "{{ login_user }}"
+      login_password: "{{ login_password }}"
+      name: "{{ db_name }}"
       state: import
       target: /backup/restore.sql
