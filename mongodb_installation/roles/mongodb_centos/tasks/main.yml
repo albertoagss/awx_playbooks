@@ -30,3 +30,12 @@
           state: present
   retries: 3
   delay: 5
+
+- name: Crear usuario administrador
+  community.mongodb.mongodb_user:
+          database: admin
+          name: "{{ admin_user }}"
+          password: "{{ admin_password }}"
+          state: present
+          roles: ["root"]
+

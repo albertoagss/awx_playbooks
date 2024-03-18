@@ -2,3 +2,6 @@
 
 mongodb_version: "7.0"
 debian_version: "debian bullseye"
+
+admin_user: "root"
+admin_password: "1234"
