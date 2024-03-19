@@ -23,8 +23,8 @@
 - name: Exportar backup al servidor MongoDB
   copy:
           src: "{{ last_file.path }}"
-          dest: "{{ restore_backups_dir }}/"
+          dest: "{{ restore_backups_dir }}/recovery.gz"
 
 - name: Restaurar backup
   ansible.builtin.shell:
-          cmd: sudo mongorestore --username "{{ admin_user }}" --password "{{ admin_password }}" --authenticationDatabase "{{ admin_db }}" --archive="{{ restore_backups_dir }}/{{ last_file }}.gz" --gzip
+          cmd: sudo mongorestore --username "{{ admin_user }}" --password "{{ admin_password }}" --authenticationDatabase "{{ admin_db }}" --archive="{{ restore_backups_dir }}/recovery.gz" --gzip
