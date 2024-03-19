@@ -21,6 +21,6 @@
 - name: Importar backup al nodo de control
   fetch:
           src: "{{ backups_dir }}/{{ db_name }}_backup_{{ timestamp }}.gz"
-          dest: "{{ backups_dir }}/"
+          dest: "{{ backups_dir }}/{{ ansible_distribution }}"
           flat: yes
           when: result is success
