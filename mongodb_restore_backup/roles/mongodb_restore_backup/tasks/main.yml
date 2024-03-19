@@ -11,7 +11,7 @@
 - name: Seleccionar el backup más reciente
   set_fact:
           # Ordena los archivos de la lista 'found_backups' según el atributo mtime (ult fecha de modificación de los archivos). Usa 'reverse=true' para ordenar de más reciente a más antiguo, y 'first' para seleccionar el primer archivo.
-          last_file: "{{ found_backups.files | sort(attribute='mtime',reverse=true | first }}"
+          last_file: "{{ found_backups.files | sort(attribute='mtime',reverse=true) | first }}"
   delegate_to: "{{ backup_server }}"
 
 - name: Crear directorio para almacenar los backups exportados
