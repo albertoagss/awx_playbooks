@@ -20,7 +20,7 @@
 
 - name: Importar backup al nodo de control
   fetch:
-          src: "/backup/MongoDB/{{ db_name }}_backup_{{ timestamp }}.gz"
+          src: "{{ backups_dir }}/{{ db_name }}_backup_{{ timestamp }}.gz"
           dest: "{{ backups_dir }}/"
           flat: yes
           when: result is success
