@@ -11,7 +11,7 @@
 
 - name: Realizar backup de la base de datos MongoDB
   ansible.builtin.shell:
-          cmd: mongodump --username "{{ admin_user }}" --password "{{ admin_password }}" --db "{{ db_name }}" --archive="/backup/MongoDB/{{ db_name }}_backup_{{ timestamp }}.gz" --gzip
+          cmd: sudo mongodump --username "{{ admin_user }}" --password "{{ admin_password }}" --authenticationDatabase "{{ admin_db }}" --db "{{ db_name }}" --archive="{{ backups_dir }}/{{ db_name }}_backup_{{ timestamp }}.gz" --gzip
 
 - name: Comprobar si se ha realizado correctamente el backup
   stat:
