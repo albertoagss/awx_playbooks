@@ -6,5 +6,8 @@ admin_user: "admin"
 admin_password: 1234
 admin_db: "admin"
 
+# Directorio del nodo de control donde se buscarán los backups
+backups_dir: "/backups/MongoDB"
+
 # Directorio en el servidor MongoDB donde se guardarán los backups exportados desde el nodo de control
 restore_backups_dir: "/backups_from_controlnode"
