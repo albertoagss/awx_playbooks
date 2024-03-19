@@ -1,0 +1,26 @@
+--- 
+- name: Crear directorio para los backups
+  file:
+          path: "{{ backups_dir }}"
+          state: directory
+          mode: '0755'
+
+- name: Obtener fecha y hora actual
+  set_fact:
+          timestamp: "{{ ansible_date_time.date }}_{{ ansible_date_time.time }}"
+
+- name: Realizar backup de la base de datos MongoDB
+  ansible.builtin.shell:
+          cmd: mongodump --username "{{ admin_user }}" --password "{{ admin_password }}" --db "{{ db_name }}" --archive="/backup/MongoDB/{{ db_name }}_backup_{{ timestamp }}.gz" --gzip
+
+- name: Comprobar si se ha realizado correctamente el backup
+  stat:
+          path: "/{{ backups_dir }}/{{ db_name }}_backup_{{ timestamp }}.gz"
+  register: result
+
+- name: Importar backup al nodo de control
+  fetch:
+          src: "/backup/MongoDB/{{ db_name }}_backup_{{ timestamp }}.gz"
+          dest: "{{ backups_dir }}/"
+          flat: yes
+          when: result is success

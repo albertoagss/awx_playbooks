@@ -5,8 +5,4 @@
   become: true
 
   roles:
-          - role: mongodb_backup_centos
-            when: ansible_distribution == 'CentOS'
-
-          - role: mongodb_backup_debian
-            when: ansible_distribution == 'Debian'
+          - role: mongodb_backup
