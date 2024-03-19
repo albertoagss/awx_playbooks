@@ -1,0 +1,8 @@
+---
+
+- name: Restaurar backup de una BD de MongoDB
+  hosts: DBservers
+  become: true
+
+  roles:
+          - role: mongodb_restore_backup

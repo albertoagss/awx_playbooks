@@ -1,0 +1,30 @@
+---
+
+- name: Buscar archivos en el directorio
+  find:
+          paths: "{{ backups_dir }}/{{ ansible_distribution }}/"
+          patterns: "*.gz"
+          file_type: file
+  register: found_backups
+  delegate_to: "{{ backup_server }}"
+
+- name: Seleccionar el backup más reciente
+  set_fact:
+          # Ordena los archivos de la lista 'found_backups' según el atributo mtime (ult fecha de modificación de los archivos). Usa 'reverse=true' para ordenar de más reciente a más antiguo, y 'first' para seleccionar el primer archivo.
+          last_file: "{{ found_backups.files | sort(attribute='mtime',reverse=true | first }}"
+  delegate_to: "{{ backup_server }}"
+
+- name: Crear directorio para almacenar los backups exportados
+  file:
+          path: "{{ restore_backups_dir }}"
+          state: directory
+          mode: '0755'
+
+- name: Exportar backup al servidor MongoDB
+  copy:
+          src: "{{ last_file.path }}"
+          dest: "{{ restore_backups_dir }}/"
+
+- name: Restaurar backup
+  ansible.builtin.shell:
+          cmd: sudo mongorestore --username "{{ admin_user }}" --password "{{ admin_password }}" --authenticationDatabase "{{ admin_db }}" --archive="{{ restore_backups_dir }}/{{ last_file }}.gz" --gzip

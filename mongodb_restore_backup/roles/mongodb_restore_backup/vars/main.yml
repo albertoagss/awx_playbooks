@@ -1,0 +1,10 @@
+---
+
+backup_server: "localhost"
+
+admin_user: "admin"
+admin_password: 1234
+admin_db: "admin"
+
+# Directorio en el servidor MongoDB donde se guardarán los backups exportados desde el nodo de control
+restore_backups_dir: "/backups_from_controlnode"
