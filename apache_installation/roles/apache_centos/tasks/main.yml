@@ -8,12 +8,33 @@
   delay: 10
   notify: "restart http"
 
+############# ABRIR PUERTO PARA HTTP CON FIREWALLD #################
+#### SI FIREWALLD NO ESTÁ DISPONIBLE (COMO POR EJEMPLO EN UBI8) ####
+#### SE INSTALA Y SE ABRE EL PUERTO CON IPTABLES ###################
+
 - name: Abrir puerto para el servicio httpd
   firewalld:
           service: http
           permanent: true
           state: enabled
+  register: firewalld_result
   notify: "restart firewalld"
+
+- name: Instalar iptables si firewalld no está disponible
+  yum:
+          name: iptables
+          state: present
+  when: firewalld_result|failed
+
+- name: Abrir puerto para httpd con iptables
+  iptables:
+          chain: INPUT
+          protocol: tcp
+          destination_port: 80
+          jump: ACCEPT
+  when: firewalld_result|failed
+
+##########################################################################
 
 - name: Deshabilitar SELINUX
   template:
