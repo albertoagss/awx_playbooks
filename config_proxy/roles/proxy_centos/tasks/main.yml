@@ -7,4 +7,10 @@
           owner: root
           group: root
           mode: '0644'
-  notify: "restart httpd"
+  register: template_result
+
+- name: Reiniciar servicio httpd
+  service:
+          name: httpd
+          state: restarted
+  when: template_result is success

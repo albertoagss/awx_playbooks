@@ -28,4 +28,10 @@
   args:
           chdir: /etc/apache2/sites-available/
           creates: /etc/apache2/sites-enabled/proxy.conf
-  notify: "restart apache"
+  register: proxy_result
+
+- name: Reiniciar apacke
+  service:
+          name: apache2
+          state: restarted
+  when: proxy_result is success
