@@ -12,3 +12,5 @@ Playbooks para ser lanzadas en AWX:
 -Se ha creado un 'Workflow Template' en AWX para automatizar 
 	el lanzamiento de todas las playbooks necesarias para 
 	instalar el LAMP, dejándolo completamente operativo.
+
+Te huele la boca a bacalao
