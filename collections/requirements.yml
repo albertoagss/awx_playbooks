@@ -1,3 +1,5 @@
 ---
 collections:
-        - community.mongodb
+        - name: ansible_modules.pokeapi
+          source: https://github.com/albertoagss/ansible_modules.git
+          type: git
