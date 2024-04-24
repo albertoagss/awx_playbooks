@@ -18,8 +18,8 @@
                       Name: {{ result.pokemon_data.name }} 
                       Pokedex ID: {{ result.pokemon_data.id }} 
                       Type: 
-                              {% for type in result.pokemon_data.types | json_query('type.name') %}
-                              - {{ type }}
+                              {% for type in result.pokemon_data.types %}
+                              - {{ type.tytpe.name }}
                               {% endfor %}
 
                       Height: {{ result.pokemon_data.height }} 
