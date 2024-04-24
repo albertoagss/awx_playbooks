@@ -9,5 +9,5 @@
 
     - name: Print module result
       debug:
-        var: result
+        var: result | json_query('pokemon_data.[name, id, height, weight]')
 
