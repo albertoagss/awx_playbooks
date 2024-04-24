@@ -16,5 +16,5 @@
                       Pokedex ID: {{ result.pokemon_data.id }} 
                       Height: {{ result.pokemon_data.height }} 
                       Weight: {{ result.pokemon_data.weight }} 
-                      Ability 1: {{ result.pokemon_data.abilities.ability.name }} 
-                      Ability 2: {{ result.pokemon_data.abilities.ability.name }}
+                      Ability 1: {{ result.pokemon_data.abilities }} 
+                      Ability 2: {{ result.pokemon_data.abilities }}
