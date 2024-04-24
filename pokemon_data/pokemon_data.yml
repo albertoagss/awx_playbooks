@@ -17,11 +17,6 @@
               msg: |
                       Name: {{ result.pokemon_data.name }} 
                       Pokedex ID: {{ result.pokemon_data.id }} 
-                      #Types: 
-                      #        {% for type in result.pokemon_data.types %}
-                      #        - {{ type.tytpe.name }}
-                      #        {% endfor %}
-
                       Height: {{ result.pokemon_data.height }} 
                       Weight: {{ result.pokemon_data.weight }} 
                       Abilities:
