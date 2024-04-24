@@ -19,5 +19,5 @@
                       Pokedex ID: {{ result.pokemon_data.id }} 
                       Height: {{ result.pokemon_data.height }} 
                       Weight: {{ result.pokemon_data.weight }} 
-                      Ability 1: "{{ result.pokemon_data.abilities | json_query('ability[?is_hidden==`false`].name') }}"
+                      Ability 1: "{{ result.pokemon_data.abilities | json_query('[?is_hidden==`false`].ability.name') }}"
                       Ability 2 (hidden): {{ result.pokemon_data.abilities }}
