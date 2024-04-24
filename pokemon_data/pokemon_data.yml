@@ -10,7 +10,7 @@
 
     - name: Print module result
       debug:
-              msg: "{{ result | json_query('ability[?is_hidden==`false`].name') }}"
+              msg: "{{ result['pokemon_data'] | json_query('ability[?is_hidden==`false`].name') }}"
     
 #    - name: Print module result
 #      debug:
