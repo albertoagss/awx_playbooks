@@ -18,7 +18,7 @@
                       Name: {{ result.pokemon_data.name }}
                       Pokedex ID: {{ result.pokemon_data.id }}
                       Types: {% for type in result.pokemon_data.types %}{{ type.type.name }} {% endfor %}
-                      Height: {{ result.pokemon_data.height }}
-                      Weight: {{ result.pokemon_data.weight }}
+                      Height: {{ result.pokemon_data.height }} decimetres
+                      Weight: {{ result.pokemon_data.weight }} hectograms
                       Abilities: {% for ability in result.pokemon_data.abilities | json_query('[?is_hidden==`false`].ability.name') %}{{ ability }} {% endfor %}
                       Hidden Abilities: {% for ability in result.pokemon_data.abilities | json_query('[?is_hidden==`true`].ability.name') %}{{ ability }} {% endfor %}
