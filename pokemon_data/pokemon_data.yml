@@ -10,7 +10,7 @@
 
     - name: Print module result
       debug:
-              var: result | json_query('pokemon_data.abilities.ability.[name]')
+              var: result | json_query('ability[*].name')
     
     - name: Print module result
       debug:
