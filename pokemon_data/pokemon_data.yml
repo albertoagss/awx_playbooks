@@ -10,14 +10,14 @@
 
     - name: Print module result
       debug:
-              var: result | json_query('ability[*].name')
+              msg: "{{ result | json_query('ability[?is_hidden==`false`].name') }}"
     
-    - name: Print module result
-      debug:
-              msg: |
-                      Name: {{ result.pokemon_data.name }} 
-                      Pokedex ID: {{ result.pokemon_data.id }} 
-                      Height: {{ result.pokemon_data.height }} 
-                      Weight: {{ result.pokemon_data.weight }} 
-                      Ability 1: {{ result.pokemon_data.abilities }} 
-                    # Ability 2: {{ result.pokemon_data.abilities }}
+#    - name: Print module result
+#      debug:
+#              msg: |
+#                      Name: {{ result.pokemon_data.name }} 
+#                      Pokedex ID: {{ result.pokemon_data.id }} 
+#                      Height: {{ result.pokemon_data.height }} 
+#                      Weight: {{ result.pokemon_data.weight }} 
+#                      Ability 1: {{ result.pokemon_data.abilities }} 
+#                      Ability 2: {{ result.pokemon_data.abilities }}
