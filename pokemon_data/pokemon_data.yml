@@ -5,20 +5,16 @@
     - name: Call pokeapi module
       pokeapi:
               pokemon: "{{ pokemon_name }}"
-              #pokemon: Groudon
+              #pokemon: Snorlax
       register: result
 
-#    - name: Print module result
-#      debug:
-#              msg: "{{ result['pokemon_data'] | json_query('ability[?is_hidden==`false`].name') }}"
-    
     - name: Print module result
       debug:
-              msg: |
-                      Name: {{ result.pokemon_data.name }}
-                      Pokedex ID: {{ result.pokemon_data.id }}
-                      Types: {% for type in result.pokemon_data.types %}{{ type.type.name }} {% endfor %}
-                      Height: {{ result.pokemon_data.height }} decimetres
-                      Weight: {{ result.pokemon_data.weight }} hectograms
-                      Abilities: {% for ability in result.pokemon_data.abilities | json_query('[?is_hidden==`false`].ability.name') %}{{ ability }} {% endfor %}
-                      Hidden Abilities: {% for ability in result.pokemon_data.abilities | json_query('[?is_hidden==`true`].ability.name') %}{{ ability }} {% endfor %}
+              msg:
+                      - "Nombre: {{ result.pokemon_data.name }}"
+                      - "Pokedex ID: {{ result.pokemon_data.id }}"
+                      - "Tipos: {% for type in result.pokemon_data.types %}{{ type.type.name }} {% endfor %}"
+                      - "Altura: {{ result.pokemon_data.height }} decimetres"
+                      - "Peso: {{ result.pokemon_data.weight }} hectograms"
+                      - "Habilidades: {% for ability in result.pokemon_data.abilities | json_query('[?is_hidden==`false`].ability.name') %}{{ ability }} {% endfor %}"
+                      - "Habilidades Ocultas: {% for ability in result.pokemon_data.abilities | json_query('[?is_hidden==`true`].ability.name') %}{{ ability }} {% endfor %}"
