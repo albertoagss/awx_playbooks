@@ -1,0 +1,7 @@
+---
+- name: Call pokemon_data role
+  hosts: localhost
+  become: true
+
+  roles:
+          - role: pokemon_data

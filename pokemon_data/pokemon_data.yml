@@ -4,10 +4,8 @@
   tasks:
     - name: Call pokeapi module
       collections.pokeapi.pokeapi:
-              search_type: "pokemon"
-              name: Spiritomb
-              #search_type: "{{ search_type }}"
-              #name: "{{ pokemon_name }}"
+              #pokemon: "{{ pokemon_name }}"
+              pokemon: Mewtwo
       retries: 3
       delay: 10
       register: pokemon_output

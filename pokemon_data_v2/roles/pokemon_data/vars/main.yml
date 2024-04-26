@@ -1,0 +1,7 @@
+---
+
+# This only can be "pokemon" or "move"
+search_type: "pokemon"
+
+# Name of the pokemon or move to search
+pokemon_or_move_name: "Arcanine"
