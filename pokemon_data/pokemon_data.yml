@@ -4,8 +4,10 @@
   tasks:
     - name: Call pokeapi module
       pokeapi:
-              #pokemon: "{{ pokemon_name }}"
-              pokemon: Snorlax
+              #search_type: pokemon
+              #name: Spiritomb
+              search_type: "{{ search_type }}"
+              name: "{{ pokemon_name }}"
       retries: 3
       delay: 10
       register: pokemon_output
