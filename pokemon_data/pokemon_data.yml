@@ -4,8 +4,8 @@
   tasks:
     - name: Call pokeapi module
       collections.pokeapi.pokeapi:
-              #pokemon: "{{ pokemon_name }}"
-              pokemon: Mewtwo
+              pokemon: "{{ pokemon_name }}"
+              #pokemon: Mewtwo
       retries: 3
       delay: 10
       register: pokemon_output
