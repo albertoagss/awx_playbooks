@@ -1,0 +1,51 @@
+---
+
+- name: Prueba llamada desde playbook
+  hosts: localhost
+  tasks:
+          - name: Call pokeapi module
+            collections.pokeapi.pokeapi_v3:
+                    #search_type: "pokemon"
+                    #name: "Arcanine"
+                    search_type: "{{ search_type }}"
+                    name: "{{ name }}"
+            retries: 3
+            delay: 10
+            register: pokemon_output
+
+          - name: Print POKEMON data
+            when: search_type == 'pokemon'
+            debug:
+                    msg:
+                            - "Name: {{ pokemon_output.pokemon_data.name }}"
+                            - "Pokedex ID: {{ pokemon_output.pokemon_data.id }}"
+                            - "Types: {% for type in pokemon_output.pokemon_data.types %}{{ type.type.name }} {% endfor %}"
+                            - "Height: {{ pokemon_output.pokemon_data.height }} decimetres"
+                            - "Weight: {{ pokemon_output.pokemon_data.weight }} hectograms"
+                            - "Abilities: {% for ability in pokemon_output.pokemon_data.abilities | json_query('[?is_hidden==`false`].ability.name') %}{{ ability }} {% endfor %}"
+                            - "Hidden Abilities: {% for ability in pokemon_output.pokemon_data.abilities | json_query('[?is_hidden==`true`].ability.name') %}{{ ability }} {% endfor %}"
+                            - "Base stats: {% for stats in pokemon_output.pokemon_data.stats %} {{ stats.stat.name }}={{ stats.base_stat }} {% endfor %}"
+
+          - name: Print MOVE data
+            when: search_type == 'move'
+            debug:
+                    msg:
+                            - "Spanish name: {{ pokemon_output.pokemon_data.names.5.name }}"
+                            - "Type: {{ pokemon_output.pokemon_data.type.name }}"
+                            - "Class: {{ pokemon_output.pokemon_data.damage_class.name }}"
+                            - "Power: {{ pokemon_output.pokemon_data.power }}"
+                            - "Accuracy: {{ pokemon_output.pokemon_data.accuracy }}"
+                            - "PP: {{ pokemon_output.pokemon_data.pp }}"
+                            - "Target: {{ pokemon_output.pokemon_data.target.name }}"
+                            - "Effect: {{ pokemon_output.pokemon_data.effect_entries.0.effect }}"
+                            - "Priority: {{ pokemon_output.pokemon_data.priority }}"
+
+          - name: Print ABILITY data
+            when: search_type == 'ability'
+            debug:
+                    msg:
+                            - "Spanish name: {{ pokemon_output.pokemon_data.names.5.name }}"
+                            - "Effect: {{ pokemon_output.pokemon_data.effect_entries.1.effect }}"
+                            - "Generation: {{ pokemon_output.pokemon_data.generation.name }}"
+                            - "Pokemon with this ability: {% for pokemon in pokemon_output.pokemon_data.pokemon | json_query('[?is_hidden==`false`].pokemon.name') %}{{ pokemon }} {% endfor %}"
+                            - "Pokemon with this hidden ability: {% for pokemon in pokemon_output.pokemon_data.pokemon | json_query('[?is_hidden==`true`].pokemon.name') %}{{ pokemon }} {% endfor %}"
