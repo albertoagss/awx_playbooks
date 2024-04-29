@@ -4,7 +4,7 @@
   hosts: localhost
   tasks:
           - name: Call pokeapi module
-            collections.pokeapi.pokeapi_v3:
+            collections.pokeapi.pokeapi_v4:
                     #search_type: "pokemon"
                     #name: "Arcanine"
                     search_type: "{{ search_type }}"
@@ -48,11 +48,12 @@
                             - "Effect: {{ pokemon_output.pokemon_data.effect_entries.1.effect }}"
                             - "Generation: {{ pokemon_output.pokemon_data.generation.name }}"
                             - "Pokemon with this ability: {% for pokemon in pokemon_output.pokemon_data.pokemon | json_query('[?is_hidden==`false`].pokemon.name') %}{{ pokemon }} {% endfor %}"
-                            - "Pokemon with this hidden ability: {% for pokemon in pokemon_output.pokemon_data.pokemon | json_query('[?is_hidden==`true`].pokemon.name')speed-boost %}{{ pokemon }} {% endfor %}"
+                            - "Pokemon with this hidden ability: {% for pokemon in pokemon_output.pokemon_data.pokemon | json_query('[?is_hidden==`true`].pokemon.name') %}{{ pokemon }} {% endfor %}"
 
           - name: Print POKEDEX data
             when: search_type == 'pokedex'
             debug:
                     msg:
                             - "Description: {{ pokemon_output.pokemon_data.descriptions.2.description }}"
-                            - "Pokemon list: {% for pokemon_entries in pokemon_output.pokemon_data %} {{ entry_number }}:{{ pokemon_species.name }} {% endfor %}"
+                            - "Pokemon list: "
+                            - "{% for entry in pokemon_output.pokemon_data.pokemon_entries %} \ {{ entry.entry_number }}={{ entry.pokemon_species.name }} | {% endfor %}"
